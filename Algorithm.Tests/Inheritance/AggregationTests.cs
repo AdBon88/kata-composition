@@ -1,10 +1,17 @@
 ﻿using Algorithm.Inheritance;
 using Xunit;
-
+//https://refactoring.guru/design-patterns/template-method
 namespace Algorithm.Tests.Inheritance
 {
     public class AggregationTests
     {
+        Measurement[] _measurements = new[]
+        {
+            new Measurement { X = 5, Y = 10},
+            new Measurement { X = 2, Y = 15},
+            new Measurement { X = 100, Y = 5}                  
+        };
+        
         [Fact]
         public void SummingAggregation_Produces_Sum()
         {
@@ -40,22 +47,17 @@ namespace Algorithm.Tests.Inheritance
 
         /// Uncomment this test and make it pass reusing as much code as 
         /// possible from other classes that are availalbe in the Inheritance folder
-        //[Fact]
-        //public void HighPassSummingAggregator_Applys_Filter()
-        //{                
-        //    var aggregator = new HighPassSummingAggregator(_measurements);
+        [Fact]
+        public void HighPassSummingAggregator_Applys_Filter()
+        {                
+            var aggregator = new HighPassSummingAggregator(_measurements);
 
-        //    var result = aggregator.Aggregate();
+            var result = aggregator.Aggregate();
 
-        //    Assert.Equal(105, result.X);
-        //    Assert.Equal(15, result.Y);
-        //}
+            Assert.Equal(105, result.X);
+            Assert.Equal(15, result.Y);
+        }
 
-        Measurement[] _measurements = new[]
-        {
-            new Measurement { X = 5, Y = 10},
-            new Measurement { X = 2, Y = 15},
-            new Measurement { X = 100, Y = 5}                  
-        };
+
     }
 }
